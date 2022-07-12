@@ -8,6 +8,10 @@ I plan on using React for the Frontend to make a interactive website that allows
 
 ## Wireframes
 
+![Untitled (3)](https://user-images.githubusercontent.com/14892355/178525249-0fe460ac-4a86-4608-82f1-345203376904.jpeg)
+![Untitled (4)](https://user-images.githubusercontent.com/14892355/178525265-b64e464f-bc20-4d71-8db9-f1a5e2dd6117.jpeg)
+![Untitled (5)](https://user-images.githubusercontent.com/14892355/178525275-5dbf29ab-5278-4422-ad5b-ed101b8e2c49.jpeg)
+
 ## Frontend Components
 
 ### Homepage
