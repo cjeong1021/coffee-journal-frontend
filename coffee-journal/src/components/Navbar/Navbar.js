@@ -5,10 +5,12 @@ import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
 import { Link } from 'react-router-dom';
 
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
+  {
+    name: 'Github',
+    href: 'https://github.com/cjeong1021/coffee-journal-frontend',
+    current: true,
+  },
+  { name: 'Find Coffees', href: '#', current: false },
 ];
 
 function classNames(...classes) {
@@ -34,18 +36,20 @@ export default function Example() {
                 </Disclosure.Button>
               </div>
               <div className='flex-1 flex items-center justify-center sm:items-stretch sm:justify-start'>
-                <div className='flex-shrink-0 flex items-center'>
-                  <img
-                    className='block lg:hidden h-8 w-auto'
-                    src='https://i.imgur.com/zcvnixc.png'
-                    alt='Workflow'
-                  />
-                  <img
-                    className='hidden lg:block h-8 w-auto'
-                    src='https://i.imgur.com/zcvnixc.png'
-                    alt='Workflow'
-                  />
-                </div>
+                <Link to=''>
+                  <div className='flex-shrink-0 flex items-center'>
+                    <img
+                      className='block lg:hidden h-8 w-auto'
+                      src='https://i.imgur.com/zcvnixc.png'
+                      alt='Workflow'
+                    />
+                    <img
+                      className='hidden lg:block h-8 w-auto'
+                      src='https://i.imgur.com/zcvnixc.png'
+                      alt='Workflow'
+                    />
+                  </div>
+                </Link>
                 <div className='hidden sm:block sm:ml-6'>
                   <div className='flex space-x-4'>
                     {navigation.map((item) => (
@@ -89,32 +93,21 @@ export default function Example() {
                     leaveTo='transform opacity-0 scale-95'
                   >
                     <Menu.Items className='origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none'>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href='#'
-                            className={classNames(
-                              active ? 'bg-gray-100' : '',
-                              'block px-4 py-2 text-sm text-gray-700'
-                            )}
-                          >
-                            Your Profile
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href='#'
-                            className={classNames(
-                              active ? 'bg-gray-100' : '',
-                              'block px-4 py-2 text-sm text-gray-700'
-                            )}
-                          >
-                            Settings
-                          </a>
-                        )}
-                      </Menu.Item>
+                      <Link to='/profile'>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <a
+                              href='#'
+                              className={classNames(
+                                active ? 'bg-gray-100' : '',
+                                'block px-4 py-2 text-sm text-gray-700'
+                              )}
+                            >
+                              Your Profile
+                            </a>
+                          )}
+                        </Menu.Item>
+                      </Link>
                       <Menu.Item>
                         {({ active }) => (
                           <a

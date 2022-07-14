@@ -27,13 +27,14 @@ export default function Home(props) {
       </div>
     );
   });
+
   return (
     <div>
       <div className='add-coffee'>
         <div className='button_plus'></div>
         <h1>Add Coffee</h1>
       </div>
-      <div className='flex flex-col items-center lg:flex-row lg:flex-wrap'>
+      <div className='flex flex-col items-center lg:flex-row lg:flex-wrap type="button" data-modal-toggle="defaultModal"'>
         {coffeeList}
       </div>
     </div>
