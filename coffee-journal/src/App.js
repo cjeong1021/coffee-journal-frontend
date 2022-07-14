@@ -7,16 +7,34 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Signup from './components/Signup/Signup';
+import Login from './components/Login/Login';
+import Addcoffee from './components/Addcoffee/Addcoffee';
 
 function App() {
   const [coffees, setCoffees] = useState([]);
-  const [login, setLogin] = useState({});
+  const [addCoffees, setAddCoffees] = useState({
+    name: '',
+    roast: '',
+    origin: '',
+    notes: '',
+  });
+  const [login, setLogin] = useState({
+    email: '',
+    password: '',
+  });
   const [signup, setSignup] = useState({
     fullname: '',
     email: '',
     password: '',
     confirm_password: '',
   });
+
+  const handleCoffees = (e) => {
+    setAddCoffees({
+      ...addCoffees,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleLogin = (e) => {
     setLogin({
@@ -54,13 +72,12 @@ function App() {
           <Route path='/profile' element={<Profile />} />
           <Route
             path='/signup'
-            element={
-              <Signup
-                handleSignup={handleSignup}
-                signup={signup}
-                setSignup={setSignup}
-              />
-            }
+            element={<Signup handleSignup={handleSignup} />}
+          />
+          <Route path='/login' element={<Login handleLogin={handleLogin} />} />
+          <Route
+            path='/add'
+            element={<Addcoffee handleCoffees={handleCoffees} />}
           />
         </Routes>
       </main>

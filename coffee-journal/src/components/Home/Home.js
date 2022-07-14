@@ -1,4 +1,5 @@
 import './Home.css';
+import { Link } from 'react-router-dom';
 
 export default function Home(props) {
   const coffeeList = props.coffees.map((coffee) => {
@@ -31,7 +32,9 @@ export default function Home(props) {
   return (
     <div>
       <div className='add-coffee'>
-        <div className='button_plus'></div>
+        <Link to='/add'>
+          <div className='button_plus'></div>
+        </Link>
         <h1>Add Coffee</h1>
       </div>
       <div className='flex flex-col items-center lg:flex-row lg:flex-wrap type="button" data-modal-toggle="defaultModal"'>
