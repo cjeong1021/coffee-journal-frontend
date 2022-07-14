@@ -1,4 +1,39 @@
+import React, { useState } from 'react';
+import axiosInstance from '../axios';
+import { Navigate, useNavigate } from 'react-router-dom';
+
 export default function Signup(props) {
+  const navigate = useNavigate();
+  const signupForm = Object.freeze({
+    email: '',
+    username: '',
+    password: '',
+  });
+
+  const [formData, setFormData] = useState(signupForm);
+
+  const handleForm = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value.trim(),
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+
+    axiosInstance
+      .post('user/register/', {
+        email: formData.email,
+        user_name: formData.username,
+        password: formData.password,
+      })
+      .then((res) => {
+        navigate('/login');
+        console.log(res);
+      });
+  };
   return (
     <div class='min-h-screen flex flex-col'>
       <div class='container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2'>
@@ -7,17 +42,17 @@ export default function Signup(props) {
           <input
             type='text'
             class='block border border-grey-light w-full p-3 rounded mb-4'
-            name='fullname'
-            placeholder='Full Name'
-            onChange={props.handleSignup}
+            name='email'
+            placeholder='Email'
+            onChange={handleForm}
           />
 
           <input
             type='text'
             class='block border border-grey-light w-full p-3 rounded mb-4'
-            name='email'
-            placeholder='Email'
-            onChange={props.handleSignup}
+            name='username'
+            placeholder='Username'
+            onChange={handleForm}
           />
 
           <input
@@ -25,19 +60,13 @@ export default function Signup(props) {
             class='block border border-grey-light w-full p-3 rounded mb-4'
             name='password'
             placeholder='Password'
-            onChange={props.handleSignup}
-          />
-          <input
-            type='password'
-            class='block border border-grey-light w-full p-3 rounded mb-4'
-            name='confirm_password'
-            placeholder='Confirm Password'
-            onChange={props.handleSignup}
+            onChange={handleForm}
           />
 
           <button
             type='submit'
             class='w-full text-center py-3 rounded bg-black text-white focus:outline-none my-1'
+            onClick={handleSubmit}
           >
             Create Account
           </button>

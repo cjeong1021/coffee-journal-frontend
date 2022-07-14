@@ -9,6 +9,7 @@ import { Routes, Route } from 'react-router-dom';
 import Signup from './components/Signup/Signup';
 import Login from './components/Login/Login';
 import Addcoffee from './components/Addcoffee/Addcoffee';
+import Logout from './components/Logout/Logout';
 
 function App() {
   const [coffees, setCoffees] = useState([]);
@@ -79,6 +80,7 @@ function App() {
             path='/add'
             element={<Addcoffee handleCoffees={handleCoffees} />}
           />
+          <Route path='/logout' element={<Logout />} />
         </Routes>
       </main>
     </div>

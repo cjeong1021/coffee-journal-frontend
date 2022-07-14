@@ -2,7 +2,9 @@
 import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import axiosInstance from '../axios';
 
 const navigation = [
   {
@@ -108,19 +110,21 @@ export default function Example() {
                           )}
                         </Menu.Item>
                       </Link>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href='#'
-                            className={classNames(
-                              active ? 'bg-gray-100' : '',
-                              'block px-4 py-2 text-sm text-gray-700'
-                            )}
-                          >
-                            Sign out
-                          </a>
-                        )}
-                      </Menu.Item>
+                      <Link to='logout'>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <a
+                              href='#'
+                              className={classNames(
+                                active ? 'bg-gray-100' : '',
+                                'block px-4 py-2 text-sm text-gray-700'
+                              )}
+                            >
+                              Sign out
+                            </a>
+                          )}
+                        </Menu.Item>
+                      </Link>
                     </Menu.Items>
                   </Transition>
                 </Menu>

@@ -1,60 +1,74 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Login.css';
 import { Link } from 'react-router-dom';
+import axiosInstance from '../axios';
+import { Navigate, useNavigate } from 'react-router-dom';
 
-const Login = (props) => {
+const Login = () => {
+  const navigate = useNavigate();
+  const signinForm = Object.freeze({
+    email: '',
+    password: '',
+  });
+
+  const [formData, setFormData] = useState(signinForm);
+
+  const handleForm = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value.trim(),
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+
+    axiosInstance
+      .post('token/', {
+        email: formData.email,
+        password: formData.password,
+      })
+      .then((res) => {
+        localStorage.setItem('access_token', res.data.access);
+        localStorage.setItem('refresh_token', res.data.refresh);
+        axiosInstance.defaults.headers['Authorization'] =
+          'JWT' + localStorage.getItem('access_token');
+        navigate('/');
+        console.log(res);
+      });
+  };
+
   return (
-    <div className='min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8'>
-      <div className='max-w-md w-full space-y-8'>
-        <div>
-          <h2 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>
-            Sign in
-          </h2>
-        </div>
-        <form className='mt-8 space-y-6' action='#' method='POST'>
-          <input type='hidden' name='remember' defaultValue='true' />
-          <div className='rounded-md shadow-sm -space-y-px'>
-            <div>
-              <label htmlFor='email-address' className='sr-only'>
-                Email address
-              </label>
-              <input
-                id='email-address'
-                name='email'
-                type='email'
-                autoComplete='email'
-                required
-                className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'
-                placeholder='Email address'
-                onChange={props.handleLogin}
-              />
-            </div>
-            <div>
-              <label htmlFor='password' className='sr-only'>
-                Password
-              </label>
-              <input
-                id='password'
-                name='password'
-                type='password'
-                autoComplete='current-password'
-                required
-                className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm'
-                placeholder='Password'
-                onChange={props.handleLogin}
-              />
-            </div>
-          </div>
+    <div class='min-h-screen flex flex-col'>
+      <div class='container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2'>
+        <div class='bg-white px-6 py-8 rounded shadow-md text-black w-full'>
+          <h1 class='mb-8 text-3xl text-center'>Log In</h1>
 
-          <div>
-            <button
-              type='submit'
-              className='group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-black hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
-            >
-              Sign in
-            </button>
-          </div>
-        </form>
+          <input
+            type='text'
+            class='block border border-grey-light w-full p-3 rounded mb-4'
+            name='email'
+            placeholder='Email'
+            onChange={handleForm}
+          />
+
+          <input
+            type='password'
+            class='block border border-grey-light w-full p-3 rounded mb-4'
+            name='password'
+            placeholder='Password'
+            onChange={handleForm}
+          />
+
+          <button
+            type='submit'
+            class='w-full text-center py-3 rounded bg-black text-white focus:outline-none my-1'
+            onClick={handleSubmit}
+          >
+            Log In
+          </button>
+        </div>
       </div>
     </div>
   );
