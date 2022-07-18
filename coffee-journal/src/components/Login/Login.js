@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import axiosInstance from '../axios';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ setLogin }) => {
   const navigate = useNavigate();
   const signinForm = Object.freeze({
     email: '',
@@ -36,6 +36,7 @@ const Login = () => {
           'JWT' + localStorage.getItem('access_token');
         navigate('/');
         console.log(res);
+        setLogin(true);
       });
   };
 
@@ -68,6 +69,16 @@ const Login = () => {
           >
             Log In
           </button>
+        </div>
+        <div class='text-grey-dark mt-6'>
+          Don't have an account?
+          <a
+            class='no-underline border-b border-blue text-blue'
+            href='../signup/'
+          >
+            <span> </span>Sign up
+          </a>
+          .
         </div>
       </div>
     </div>

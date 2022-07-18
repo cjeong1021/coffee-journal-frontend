@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axiosInstance from '../axios';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-export default function Signup(props) {
+export default function Signup() {
   const navigate = useNavigate();
   const signupForm = Object.freeze({
     email: '',

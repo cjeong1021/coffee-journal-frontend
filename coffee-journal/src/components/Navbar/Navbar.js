@@ -19,7 +19,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Example() {
+export default function Example({ login }) {
   return (
     <Disclosure as='nav' className='bg-gray-800'>
       {({ open }) => (
@@ -110,21 +110,39 @@ export default function Example() {
                           )}
                         </Menu.Item>
                       </Link>
-                      <Link to='logout'>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href='#'
-                              className={classNames(
-                                active ? 'bg-gray-100' : '',
-                                'block px-4 py-2 text-sm text-gray-700'
-                              )}
-                            >
-                              Sign out
-                            </a>
-                          )}
-                        </Menu.Item>
-                      </Link>
+                      {login === true ? (
+                        <Link to='logout'>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <a
+                                href='#'
+                                className={classNames(
+                                  active ? 'bg-gray-100' : '',
+                                  'block px-4 py-2 text-sm text-gray-700'
+                                )}
+                              >
+                                Sign out
+                              </a>
+                            )}
+                          </Menu.Item>
+                        </Link>
+                      ) : (
+                        <Link to='login'>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <a
+                                href='#'
+                                className={classNames(
+                                  active ? 'bg-gray-100' : '',
+                                  'block px-4 py-2 text-sm text-gray-700'
+                                )}
+                              >
+                                Sign in
+                              </a>
+                            )}
+                          </Menu.Item>
+                        </Link>
+                      )}
                     </Menu.Items>
                   </Transition>
                 </Menu>

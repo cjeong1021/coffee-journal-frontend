@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import axiosInstance from '../axios';
 import { useNavigate } from 'react-router-dom';
 
-export default function Logout() {
+const Logout = ({ setLogin }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -13,5 +13,8 @@ export default function Logout() {
     localStorage.removeItem('refresh_token');
     axiosInstance.defaults.headers['Authorization'] = null;
     navigate('/login');
+    setLogin(false);
   }, []);
-}
+};
+
+export default Logout;

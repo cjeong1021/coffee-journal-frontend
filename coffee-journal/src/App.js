@@ -13,47 +13,12 @@ import Logout from './components/Logout/Logout';
 
 function App() {
   const [coffees, setCoffees] = useState([]);
-  const [addCoffees, setAddCoffees] = useState({
-    name: '',
-    roast: '',
-    origin: '',
-    notes: '',
-  });
-  const [login, setLogin] = useState({
-    email: '',
-    password: '',
-  });
-  const [signup, setSignup] = useState({
-    fullname: '',
-    email: '',
-    password: '',
-    confirm_password: '',
-  });
 
-  const handleCoffees = (e) => {
-    setAddCoffees({
-      ...addCoffees,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleLogin = (e) => {
-    setLogin({
-      ...login,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSignup = (e) => {
-    setSignup({
-      ...signup,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const [login, setLogin] = useState(false);
 
   const getData = () => {
     axios
-      .get('http://localhost:8001/coffees/')
+      .get('http://localhost:8000/coffees/')
       .then((res) => {
         console.log(res.data);
         setCoffees(res.data);
@@ -66,21 +31,19 @@ function App() {
   useEffect(getData, []);
   return (
     <div className='App'>
-      <Navbar />
+      <Navbar login={login} />
       <main>
         <Routes>
           <Route path='' element={<Home coffees={coffees} />} />
+          fi
           <Route path='/profile' element={<Profile />} />
-          <Route
-            path='/signup'
-            element={<Signup handleSignup={handleSignup} />}
-          />
-          <Route path='/login' element={<Login handleLogin={handleLogin} />} />
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/login' element={<Login setLogin={setLogin} />} />
           <Route
             path='/add'
-            element={<Addcoffee handleCoffees={handleCoffees} />}
+            element={<Addcoffee coffees={coffees} setCoffees={setCoffees} />}
           />
-          <Route path='/logout' element={<Logout />} />
+          <Route path='/logout' element={<Logout setLogin={setLogin} />} />
         </Routes>
       </main>
     </div>
