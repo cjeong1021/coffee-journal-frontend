@@ -22,14 +22,19 @@ export default function AddProfile() {
     e.preventDefault();
 
     axiosInstance
-      .post('http://localhost:8000/api/profiles/', addProfile, {
-        headers: {
-          Authorization: `JWT ${localStorage.getItem('access_token')}`,
-        },
-      })
+      .post(
+        'https://rocky-river-96433.herokuapp.com/api/profiles/',
+        addProfile,
+        {
+          headers: {
+            Authorization: `JWT ${localStorage.getItem('access_token')}`,
+          },
+        }
+      )
       .then((res) => {
         console.log(res.data);
         navigate('/');
+        window.location.reload();
       });
   };
   return (

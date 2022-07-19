@@ -1,19 +1,13 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import axiosInstance from '../axios';
 import AddProfile from '../EditProfile/EditProfile';
+import EditProfile from '../EditProfile/EditProfile';
 
-export default function Profile(props) {
+export default function Profile({ profile }) {
   return (
     <div>
-      {props.profile[0].name === undefined ? (
-        <div>
-          <p>{props.profile[0].name}</p>
-          <p>{props.profile[0].fav_roast}</p>
-          <p>{props.profile[0].brew_method}</p>
-        </div>
-      ) : (
+      {profile === [] ? (
         <AddProfile />
+      ) : (
+        <EditProfile profile={profile} user={profile[0].user} />
       )}
     </div>
   );

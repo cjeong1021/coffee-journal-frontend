@@ -5,7 +5,7 @@ import Home from './components/Home/Home';
 import Profile from './components/Profile/Profile';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Signup from './components/Signup/Signup';
 import Login from './components/Login/Login';
 import Addcoffee from './components/Addcoffee/Addcoffee';
@@ -16,18 +16,23 @@ import EditProfile from './components/EditProfile/EditProfile';
 import AddProfile from './components/AddProfile/AddProfile';
 
 function App() {
+  const navigate = useNavigate();
   const [coffees, setCoffees] = useState([]);
   const [profile, setProfile] = useState([]);
 
   const [login, setLogin] = useState(false);
 
   useEffect(() => {
-    setLogin(JSON.parse(window.sessionStorage.getItem('login')));
+    if (localStorage.getItem('access_token')) {
+      setLogin(true);
+    } else {
+      setLogin(false);
+    }
   }, []);
 
   const getData = () => {
     axiosInstance
-      .get('http://localhost:8000/api/coffees/')
+      .get('https://rocky-river-96433.herokuapp.com/api/coffees/')
       .then((res) => {
         console.log(res.data);
         setCoffees(res.data);
@@ -39,7 +44,7 @@ function App() {
 
   const getProfile = () => {
     axiosInstance
-      .get('http://localhost:8000/api/profiles/', {
+      .get('https://rocky-river-96433.herokuapp.com/api/profiles/', {
         headers: {
           Authorization: `JWT ${localStorage.getItem('access_token')}`,
         },

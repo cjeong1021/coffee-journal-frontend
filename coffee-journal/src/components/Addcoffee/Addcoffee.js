@@ -25,15 +25,20 @@ export default function Addcoffee(props) {
     e.preventDefault();
 
     axiosInstance
-      .post('http://localhost:8000/api/coffees/', addCoffees, {
-        headers: {
-          Authorization: `JWT ${localStorage.getItem('access_token')}`,
-        },
-      })
+      .post(
+        'https://rocky-river-96433.herokuapp.com/api/coffees/',
+        addCoffees,
+        {
+          headers: {
+            Authorization: `JWT ${localStorage.getItem('access_token')}`,
+          },
+        }
+      )
       .then((res) => {
         console.log(res.data);
-        props.setCoffees([...props.coffees, res.data]);
+
         navigate('/');
+        window.location.reload();
       });
   };
   return (

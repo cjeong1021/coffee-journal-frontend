@@ -35,6 +35,7 @@ const Login = ({ setLogin }) => {
         axiosInstance.defaults.headers['Authorization'] =
           'JWT' + localStorage.getItem('access_token');
         navigate('/');
+        window.location.reload();
         console.log(res);
         setLogin(true);
       });

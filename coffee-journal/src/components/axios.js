@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:8000/api/';
+const baseURL = 'https://rocky-river-96433.herokuapp.com/api/';
 
 const axiosInstance = axios.create({
   baseURL: baseURL,
@@ -73,11 +73,9 @@ axiosInstance.interceptors.response.use(
             });
         } else {
           console.log('Refresh token is expired', tokenParts.exp, now);
-          window.location.href = '/login/';
         }
       } else {
         console.log('Refresh token not available.');
-        window.location.href = '/login/';
       }
     }
 

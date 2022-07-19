@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../axios';
 
-export default function AddProfile() {
+export default function EditProfile({ profile, user }) {
   const navigate = useNavigate();
   const [editProfile, setEditProfile] = useState({
-    name: '',
-    fav_roast: '',
-    brew_method: '',
+    name: profile[0].name,
+    fav_roast: profile[0].fav_roast,
+    brew_method: profile[0].brew_method,
   });
 
   const handleProfile = (e) => {
@@ -22,11 +22,15 @@ export default function AddProfile() {
     e.preventDefault();
 
     axiosInstance
-      .post('http://localhost:8000/api/profiles/', editProfile, {
-        headers: {
-          Authorization: `JWT ${localStorage.getItem('access_token')}`,
-        },
-      })
+      .post(
+        `https://rocky-river-96433.herokuapp.com/api/profiles/${user}`,
+        editProfile,
+        {
+          headers: {
+            Authorization: `JWT ${localStorage.getItem('access_token')}`,
+          },
+        }
+      )
       .then((res) => {
         console.log(res.data);
         navigate('/');
@@ -41,6 +45,7 @@ export default function AddProfile() {
             type='text'
             class='block border border-grey-light w-full p-3 rounded mb-4'
             name='name'
+            placeholder='Name'
             defaultValue={editProfile.name}
             onChange={handleProfile}
           />

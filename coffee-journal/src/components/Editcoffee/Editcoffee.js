@@ -20,10 +20,14 @@ export default function EditCoffee(props) {
     e.preventDefault();
 
     axiosInstance
-      .put(`http://localhost:8000/api/coffees/${id}`, editCoffees)
+      .put(
+        `https://rocky-river-96433.herokuapp.com/api/coffees/${id}`,
+        editCoffees
+      )
       .then((res) => {
         console.log(res.data);
         navigate('/');
+        window.location.reload();
       });
   };
 
@@ -31,12 +35,13 @@ export default function EditCoffee(props) {
     e.preventDefault();
 
     axiosInstance
-      .delete(`http://localhost:8000/api/coffees/${id}`)
+      .delete(`https://rocky-river-96433.herokuapp.com/api/coffees/${id}`)
       .then((res) => {
         console.log(res.data);
         const updated = props.coffees.filter((coffee) => id !== coffee.id);
         props.setCoffees(updated);
         navigate('/');
+        window.location.reload();
       });
   };
 

@@ -12,7 +12,11 @@ const navigation = [
     href: 'https://github.com/cjeong1021/coffee-journal-frontend',
     current: true,
   },
-  { name: 'Find Coffees', href: '#', current: false },
+  {
+    name: 'Find Coffees',
+    href: 'https://www.drinktrade.com/onboarding/question/1',
+    current: false,
+  },
 ];
 
 function classNames(...classes) {
