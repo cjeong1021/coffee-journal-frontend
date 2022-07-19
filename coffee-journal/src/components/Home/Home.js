@@ -5,13 +5,11 @@ export default function Home(props) {
   const coffeeList = props.coffees.map((coffee) => {
     return (
       <div class='card rounded overflow-hidden shadow-lg m-5 lg:basis-1/4'>
-        <img
-          class='w-full'
-          src='https://www.worldatlas.com/r/w768/upload/12/f8/83/coffee-cup.jpg'
-          alt='Sunset in the mountains'
-        />
+        <img class='w-full' src={`${coffee.image}`} alt='Coffee Image' />
         <div class='px-6 py-4'>
-          <div class='font-bold text-xl mb-2'>{coffee.name}</div>
+          <Link to={`/${coffee.id}`} element>
+            <div class='font-bold text-xl mb-2'>{coffee.name}</div>
+          </Link>
           <p class='text-gray-700 text-base'>{coffee.notes}</p>
         </div>
         <div class='px-6 pt-4 pb-2 flex-wrap'>
