@@ -26,7 +26,7 @@ export default function Addcoffee(props) {
 
     axiosInstance
       .post(
-        'https://rocky-river-96433.herokuapp.com/api/coffees/',
+        'https://web-production-220b.up.railway.app/api/coffees/',
         addCoffees,
         {
           headers: {

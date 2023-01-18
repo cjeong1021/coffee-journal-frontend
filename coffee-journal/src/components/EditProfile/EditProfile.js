@@ -3,13 +3,22 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../axios';
 
-export default function EditProfile({ profile, user }) {
+export default function EditProfile(props) {
   const navigate = useNavigate();
+  console.log(props.profile);
   const [editProfile, setEditProfile] = useState({
-    name: profile[0].name,
-    fav_roast: profile[0].fav_roast,
-    brew_method: profile[0].brew_method,
+    name: '',
+    fav_roast: '',
+    brew_method: '',
   });
+
+  //   if (profile.length !== 0) {
+  //     setEditProfile({
+  //       name: profile[0].name,
+  //       fav_roast: profile[0].fave_roast,
+  //       brew_method: profile[0].brew_method,
+  //     });
+  //   }
 
   const handleProfile = (e) => {
     setEditProfile({
@@ -22,8 +31,8 @@ export default function EditProfile({ profile, user }) {
     e.preventDefault();
 
     axiosInstance
-      .post(
-        `https://rocky-river-96433.herokuapp.com/api/profiles/${user}`,
+      .put(
+        `https://web-production-220b.up.railway.app/api/profiles/${props.profile[0].user}`,
         editProfile,
         {
           headers: {
@@ -34,6 +43,7 @@ export default function EditProfile({ profile, user }) {
       .then((res) => {
         console.log(res.data);
         navigate('/');
+        window.location.reload();
       });
   };
   return (

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'https://rocky-river-96433.herokuapp.com/api/';
+const baseURL = 'https://web-production-220b.up.railway.app/api/';
 
 const axiosInstance = axios.create({
   baseURL: baseURL,

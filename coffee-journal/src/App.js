@@ -32,7 +32,7 @@ function App() {
 
   const getData = () => {
     axiosInstance
-      .get('https://rocky-river-96433.herokuapp.com/api/coffees/')
+      .get('https://web-production-220b.up.railway.app/api/coffees/')
       .then((res) => {
         console.log(res.data);
         setCoffees(res.data);
@@ -52,6 +52,11 @@ function App() {
       .then((res) => {
         console.log(res.data);
         setProfile(res.data);
+      })
+      .then(() => {
+        if (profile == []) {
+          navigate('/addprofile');
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -87,8 +92,6 @@ function App() {
               />
             }
           />
-          <Route path='/editprofile/:id' element={<EditProfile />} />
-          <Route path='/addprofile' element={<AddProfile />} />
         </Routes>
       </main>
     </div>

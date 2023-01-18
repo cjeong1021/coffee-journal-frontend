@@ -21,7 +21,7 @@ export default function EditCoffee(props) {
 
     axiosInstance
       .put(
-        `https://rocky-river-96433.herokuapp.com/api/coffees/${id}`,
+        `https://web-production-220b.up.railway.app/api/coffees/${id}`,
         editCoffees
       )
       .then((res) => {
@@ -35,7 +35,7 @@ export default function EditCoffee(props) {
     e.preventDefault();
 
     axiosInstance
-      .delete(`https://rocky-river-96433.herokuapp.com/api/coffees/${id}`)
+      .delete(`https://web-production-220b.up.railway.app/api/coffees/${id}`)
       .then((res) => {
         console.log(res.data);
         const updated = props.coffees.filter((coffee) => id !== coffee.id);

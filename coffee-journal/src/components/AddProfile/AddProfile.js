@@ -23,7 +23,7 @@ export default function AddProfile() {
 
     axiosInstance
       .post(
-        'https://rocky-river-96433.herokuapp.com/api/profiles/',
+        'https://web-production-220b.up.railway.app/api/profiles/',
         addProfile,
         {
           headers: {
