@@ -44,7 +44,7 @@ function App() {
 
   const getProfile = () => {
     axiosInstance
-      .get('https://rocky-river-96433.herokuapp.com/api/profiles/', {
+      .get('https://web-production-220b.up.railway.app/api/profiles/', {
         headers: {
           Authorization: `JWT ${localStorage.getItem('access_token')}`,
         },
