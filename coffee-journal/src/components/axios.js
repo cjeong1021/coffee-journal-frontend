@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'https://web-production-220b.up.railway.app/api/';
+const baseURL = 'https://web-production-192.up.railway.app/api/';
 
 const axiosInstance = axios.create({
   baseURL: baseURL,
