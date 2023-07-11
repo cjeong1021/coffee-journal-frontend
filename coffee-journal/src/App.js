@@ -32,7 +32,7 @@ function App() {
 
   const getData = () => {
     axiosInstance
-      .get('https://web-production-220b.up.railway.app/api/coffees/')
+      .get('https://web-production-192.up.railway.app/api/coffees/')
       .then((res) => {
         console.log(res.data);
         setCoffees(res.data);
@@ -44,7 +44,7 @@ function App() {
 
   const getProfile = () => {
     axiosInstance
-      .get('https://web-production-220b.up.railway.app/api/profiles/', {
+      .get('https://web-production-192.up.railway.app/api/profiles/', {
         headers: {
           Authorization: `JWT ${localStorage.getItem('access_token')}`,
         },
