@@ -21,7 +21,7 @@ export default function EditCoffee(props) {
 
     axiosInstance
       .put(
-        `https://web-production-220b.up.railway.app/api/coffees/${id}`,
+        `https://web-production-192.up.railway.app/api/coffees/${id}`,
         editCoffees
       )
       .then((res) => {
