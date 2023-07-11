@@ -23,7 +23,7 @@ export default function AddProfile() {
 
     axiosInstance
       .post(
-        'https://web-production-220b.up.railway.app/api/profiles/',
+        'https://web-production-192.up.railway.app/api/profiles/',
         addProfile,
         {
           headers: {
