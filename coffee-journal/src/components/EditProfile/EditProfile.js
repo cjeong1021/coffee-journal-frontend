@@ -32,7 +32,7 @@ export default function EditProfile(props) {
 
     axiosInstance
       .put(
-        `https://web-production-220b.up.railway.app/api/profiles/${props.profile[0].user}`,
+        `https://web-production-192.up.railway.app/api/profiles/${props.profile[0].user}`,
         editProfile,
         {
           headers: {
