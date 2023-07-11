@@ -26,7 +26,7 @@ export default function Addcoffee(props) {
 
     axiosInstance
       .post(
-        'https://web-production-220b.up.railway.app/api/coffees/',
+        'https://web-production-192.up.railway.app/api/coffees/',
         addCoffees,
         {
           headers: {
